@@ -46,13 +46,12 @@ const deleteCategoriaDB = async (codigo) => {
         }
       
     } catch(err){
-        throw "Erro ao alterar a categoria:  " + err;
+        throw "Erro ao deletar a categoria:  " + err;
     }
 }
 
 const getCategoriaPorCodigoDB = async (codigo) => {
     try {
-        const {nome} = body;
         const results = await pool.query(`SELECT * FROM categorias WHERE codigo = $1`, [codigo]);
         const categoria = results.rows[0];
         if (results.rowCount == 0){
@@ -63,7 +62,7 @@ const getCategoriaPorCodigoDB = async (codigo) => {
         }
       
     } catch(err){
-        throw "Erro ao alterar a categoria:  " + err;
+        throw "Erro ao encontrar a categoria:  " + err;
     }
 }
 module.exports = {getCategoriasDB, addCategoriaDB, updateCategoriaDB, deleteCategoriaDB, getCategoriaPorCodigoDB}
